@@ -1,22 +1,53 @@
 import { useSelector } from 'react-redux';
 import { Parser } from 'html-to-react';
+import {
+  ContainerDetail,
+  TopSection,
+  BottomSection,
+  ImageContainer,
+  Image,
+  TextContainer,
+  Title1,
+  StyledP,
+} from '../StyledComponent/StyledGameDetail';
 
 const GameDetail = () => {
   const game = useSelector((state) => state.game);
-  console.log(game);
+  // console.log(game);
   const htmlToReactParser = new Parser();
   const { description } = game;
   const reactDescription = htmlToReactParser.parse(description);
+
   return (
-    <>
-      <div>{game.name}</div>
-      <img src={game.image} alt={game.name} />
-      <div>{reactDescription}</div>
-      <div>{game.platforms}</div>
-      <div>{game.releaseDate}</div>
-      <div>{game.rating}</div>
-      <div>{game.genres}</div>
-    </>
+    <ContainerDetail>
+      <TopSection>
+        <ImageContainer>
+          <Image src={game.image} alt={game.name} />
+        </ImageContainer>
+        <TextContainer>
+          <Title1>{game.name}</Title1>
+          <div>{reactDescription}</div>
+        </TextContainer>
+      </TopSection>
+      <BottomSection>
+        <div>
+          <StyledP>Platforms: </StyledP>
+          {game.platforms}
+        </div>
+        <div>
+          <StyledP>Release Date: </StyledP>
+          {game.releaseDate}
+        </div>
+        <div>
+          <StyledP>Rating: </StyledP>
+          {game.rating}
+        </div>
+        <div>
+          <StyledP>Genres: </StyledP>
+          {game.genres}
+        </div>
+      </BottomSection>
+    </ContainerDetail>
   );
 };
 

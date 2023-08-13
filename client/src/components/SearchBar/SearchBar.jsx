@@ -1,7 +1,14 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import { searchByName } from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
+import {
+  Input,
+  ContainerSearchBar,
+  Button,
+} from '../StyledComponent/StyledSearchBar';
 
 function SearchBar({ searchByName }) {
   const [name, setName] = useState('');
@@ -18,18 +25,18 @@ function SearchBar({ searchByName }) {
   };
 
   return (
-    <>
+    <ContainerSearchBar>
       <form onSubmit={handleSubmit}>
-        <input
+        <Input
           type="text"
           placeholder="Buscar por nombre"
           value={name}
           onChange={(event) => setName(event.target.value)}
         />
-        <button type="submit">Buscar</button>
+        <Button type="submit">Buscar</Button>
       </form>
       {isLoading && <p>Cargando...</p>}
-    </>
+    </ContainerSearchBar>
   );
 }
 

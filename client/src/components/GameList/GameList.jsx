@@ -1,14 +1,17 @@
 /* eslint-disable react/prop-types */
-import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import GameCard from '../GameCard/GameCard';
-import ContainerList from '../StyledComponent/StyledGameList';
+import {
+  ContainerList,
+  PaginationContainer,
+  PaginationButton,
+  PaginationText,
+} from '../StyledComponent/StyledGameList';
 
 const ITEMS_PER_PAGE = 15;
 
-function GameList() {
+function GameList({ games }) {
   const [currentPage, setCurrentPage] = useState(0);
-  const games = useSelector((state) => state.games);
 
   // Calcular el número total de páginas
   const totalPages = Math.ceil(games.length / ITEMS_PER_PAGE);
@@ -32,18 +35,20 @@ function GameList() {
   };
 
   return (
-    <ContainerList>
-      {currentGames.map((game) => (
-        <GameCard key={game.id} game={game} />
-      ))}
-      <>
-        <button onClick={handlePrevPage}>Anterior</button>
-        <p>
+    <>
+      <ContainerList>
+        {currentGames.map((game) => (
+          <GameCard key={game.create ? `db-${game.id}` : game.id} game={game} />
+        ))}
+      </ContainerList>
+      <PaginationContainer>
+        <PaginationButton onClick={handlePrevPage}>Anterior</PaginationButton>
+        <PaginationText>
           Página {currentPage + 1} de {totalPages}
-        </p>
-        <button onClick={handleNextPage}>Siguiente</button>
-      </>
-    </ContainerList>
+        </PaginationText>
+        <PaginationButton onClick={handleNextPage}>Siguiente</PaginationButton>
+      </PaginationContainer>
+    </>
   );
 }
 

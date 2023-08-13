@@ -1,6 +1,10 @@
 import { GET_GAMES, GET_GAME, SEARCH_BY_NAME } from './actions';
 
-const initialState = { games: [], game: [], searchResults: [] };
+const initialState = {
+  games: [],
+  game: [],
+  searchResults: [],
+};
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {

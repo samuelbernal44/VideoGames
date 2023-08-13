@@ -22,11 +22,13 @@ function GameCard({ game }) {
         <StyledP>Genres</StyledP>
         <GridGenres>
           {genres.map((genre) => (
-            <ItemsGenres className="genre-item" key={genre}>
-              {genre}
-            </ItemsGenres>
+            <ItemsGenres key={genre}>{genre}</ItemsGenres>
           ))}
         </GridGenres>
+        <span>
+          <StyledP>Rating </StyledP>
+          {game.rating}
+        </span>
       </ContainerGenres>
     </ContainerCard>
   );

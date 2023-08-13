@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ContainerNavBar from '../StyledComponent/StyledNavBar';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import { Button } from '../StyledComponent/StyledSearchBar';
 
 const NavBar = ({ onSearch }) => {
   const handleSearch = async (name) => {
@@ -16,8 +18,12 @@ const NavBar = ({ onSearch }) => {
   };
   return (
     <ContainerNavBar>
-      <Link to="/home">Home</Link>
-      <Link to="/create">Form</Link>
+      <Link to="/home">
+        <Button>Home</Button>
+      </Link>
+      <Link to="/create">
+        <Button>Form</Button>
+      </Link>
       <SearchBar onSearch={handleSearch} />
     </ContainerNavBar>
   );
