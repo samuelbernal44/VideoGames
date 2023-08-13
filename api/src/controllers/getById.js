@@ -15,7 +15,11 @@ const getById = async (req, res) => {
 
       if (videogame) {
         // Si se encontró el videojuego en la base de datos, devolverlo
-        res.json(videogame);
+        // res.json(videogame);
+        res.json({
+          ...videogame.toJSON(),
+          genres: videogame.genres.map((genre) => genre.name).join(', '),
+        });
         return;
       }
     }
@@ -35,7 +39,7 @@ const getById = async (req, res) => {
       image: game.background_image,
       releaseDate: game.released,
       rating: game.rating,
-      genres: game.genres.map((genre) => genre.name),
+      genres: game.genres.map((genre) => genre.name).join(', '),
     });
   } catch (error) {
     res.status(500).json({ error: error.message });

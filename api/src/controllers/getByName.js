@@ -23,6 +23,7 @@ const getByName = async (req, res) => {
       releaseDate: game.released,
       rating: game.rating,
       genres: game.genres.map((genre) => genre.name).join(', '),
+      created: false,
     }));
 
     // Search for video games in local database
@@ -48,6 +49,7 @@ const getByName = async (req, res) => {
       releaseDate: game.releaseDate,
       rating: game.rating,
       genres: game.genres.map((genre) => genre.name).join(', '),
+      created: true,
     }));
 
     // Combine and filter results

@@ -7,6 +7,7 @@ const getById = require('../controllers/getById.js');
 const getByName = require('../controllers/getByName.js');
 const getGenres = require('../controllers/getGenres.js');
 const postGame = require('../controllers/postGame.js');
+const getPlatform = require('../controllers/getPlatforms');
 
 const router = Router();
 
@@ -16,6 +17,7 @@ router.get('/videogames', getAllGames);
 router.get('/videogames/:id', getById);
 router.get('/videogame/name', getByName);
 router.get('/genres', getGenres);
+router.get('/platforms', getPlatform);
 router.post('/videogames', postValidate, postGame);
 
 module.exports = router;

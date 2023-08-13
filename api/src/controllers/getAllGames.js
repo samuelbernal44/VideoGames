@@ -32,30 +32,33 @@ const getAllGames = async (req, res) => {
       releaseDate: game.released,
       rating: game.rating,
       genres: game.genres.map((genre) => genre.name).join(', '),
+      created: false,
     }));
 
-    const dbGames = (
-      await Videogame.findAll({
-        include: {
-          model: Genre,
-          attributes: ['name'],
-          through: { attributes: [] },
-        },
-      })
-    ).map((game) => ({
-      id: game.id,
-      name: game.name,
-      description: game.description,
-      platforms: game.platforms,
-      image: game.image,
-      releaseDate: game.releaseDate,
-      rating: game.rating,
-      genres: game.genres.map((genre) => genre.name).join(', '),
-    }));
+    if (page === 1) {
+      const dbGames = (
+        await Videogame.findAll({
+          include: {
+            model: Genre,
+            attributes: ['name'],
+            through: { attributes: [] },
+          },
+        })
+      ).map((game) => ({
+        id: game.id,
+        name: game.name,
+        description: game.description,
+        platforms: game.platforms,
+        image: game.image,
+        releaseDate: game.releaseDate,
+        rating: game.rating,
+        genres: game.genres.map((genre) => genre.name).join(', '),
+        created: true,
+      }));
 
-    // Combinar juegos de la API y la base de datos
-    games.push(...dbGames);
-
+      // Combinar juegos de la API y la base de datos
+      games.push(...dbGames);
+    }
     res.json({
       games,
       totalPages: response.data.count,
