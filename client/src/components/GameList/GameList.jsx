@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import GameCard from '../GameCard/GameCard';
 import {
   ContainerList,
@@ -13,6 +13,13 @@ const ITEMS_PER_PAGE = 15;
 function GameList({ games }) {
   const [currentPage, setCurrentPage] = useState(0);
 
+  useEffect(() => {
+    const storedPage = localStorage.getItem('currentPage');
+    if (storedPage) {
+      setCurrentPage(Number(storedPage));
+    }
+  }, []);
+
   // Calcular el número total de páginas
   const totalPages = Math.ceil(games.length / ITEMS_PER_PAGE);
 
@@ -24,13 +31,17 @@ function GameList({ games }) {
   // Manejadores para cambiar de página
   const handleNextPage = () => {
     if (currentPage < totalPages - 1) {
-      setCurrentPage(currentPage + 1);
+      const newPage = currentPage + 1;
+      setCurrentPage(newPage);
+      localStorage.setItem('currentPage', newPage);
     }
   };
 
   const handlePrevPage = () => {
     if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
+      const newPage = currentPage - 1;
+      setCurrentPage(newPage);
+      localStorage.setItem('currentPage', newPage);
     }
   };
 
