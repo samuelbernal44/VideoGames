@@ -14,6 +14,22 @@ function HomePage() {
 
   useEffect(() => {
     dispatch(getGames());
+    const storedGenre = localStorage.getItem('selectedGenre');
+    if (storedGenre) {
+      setSelectedGenre(storedGenre);
+    }
+    const storedOrigin = localStorage.getItem('selectedOrigin');
+    if (storedOrigin) {
+      setSelectedOrigin(storedOrigin);
+    }
+    const storedSortCriteria = localStorage.getItem('sortCriteria');
+    if (storedSortCriteria) {
+      setSortCriteria(storedSortCriteria);
+    }
+    const storedSortDirection = localStorage.getItem('sortDirection');
+    if (storedSortDirection) {
+      setSortDirection(storedSortDirection);
+    }
   }, [dispatch]);
 
   // Filtrar juegos por género
@@ -28,9 +44,9 @@ function HomePage() {
 
   // Filtrar juegos por origen
   if (selectedOrigin === 'API') {
-    filteredGames = games.filter((game) => !game.created);
+    filteredGames = filteredGames.filter((game) => !game.created);
   } else if (selectedOrigin === 'Database') {
-    filteredGames = games.filter((game) => game.created);
+    filteredGames = filteredGames.filter((game) => game.created);
   }
 
   // Ordenar juegos
@@ -47,19 +63,25 @@ function HomePage() {
   // Controladores para actualizar el género, el origen y el criterio de ordenamiento seleccionados
   const handleFilterChange = (genre) => {
     setSelectedGenre(genre);
+    localStorage.setItem('selectedGenre', genre);
   };
   const handleOriginChange = (origin) => {
     setSelectedOrigin(origin);
+    localStorage.setItem('selectedOrigin', origin);
   };
 
   const handleNameSortChange = (event) => {
     setSortCriteria('name');
     setSortDirection(event);
+    localStorage.setItem('sortCriteria', 'name');
+    localStorage.setItem('sortDirection', event);
   };
 
   const handleRatingSortChange = (event) => {
     setSortCriteria('rating');
     setSortDirection(event);
+    localStorage.setItem('sortCriteria', 'rating');
+    localStorage.setItem('sortDirection', event);
   };
 
   return (
@@ -69,6 +91,10 @@ function HomePage() {
         onOriginChange={handleOriginChange}
         onSortName={handleNameSortChange}
         onSortRating={handleRatingSortChange}
+        selectedGenre={selectedGenre}
+        selectedOrigin={selectedOrigin}
+        sortCriteria={sortCriteria}
+        sortDirection={sortDirection}
       />
       <GameList games={filteredGames} />
     </div>
