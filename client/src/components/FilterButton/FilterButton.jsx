@@ -17,7 +17,6 @@ function FilterButton({
 }) {
   const handleFilterChange = (event) => {
     onFilterChange(event.target.value);
-    console.log(event.target.value);
   };
   const handleOriginChange = (event) => {
     onOriginChange(event.target.value);
