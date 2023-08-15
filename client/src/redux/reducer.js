@@ -1,4 +1,4 @@
-import { GET_GAMES, GET_GAME, SEARCH_BY_NAME } from './actions';
+import { GET_GAMES, GET_GAME, SEARCH_BY_NAME, CLEAR_GAME } from './actions';
 
 const initialState = {
   games: [],
@@ -14,6 +14,8 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, game: action.payload };
     case SEARCH_BY_NAME:
       return { ...state, searchResults: action.payload };
+    case CLEAR_GAME:
+      return { ...state, game: [] };
     default:
       return { ...state };
   }

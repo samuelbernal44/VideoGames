@@ -3,6 +3,7 @@ import axios from 'axios';
 export const GET_GAMES = 'GET_GAMES';
 export const GET_GAME = 'GET_GAME';
 export const SEARCH_BY_NAME = 'SEARCH_BY_NAME';
+export const CLEAR_GAME = 'CLEAR_GAME';
 
 export const getGames = () => {
   return async function (dispatch) {
@@ -37,3 +38,7 @@ export const searchByName = (name) => {
     dispatch({ type: SEARCH_BY_NAME, payload: games });
   };
 };
+
+export const clearGame = () => ({
+  type: CLEAR_GAME,
+});
