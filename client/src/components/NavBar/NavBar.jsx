@@ -13,7 +13,10 @@ const NavBar = ({ onSearch }) => {
       );
       onSearch(response.data);
     } catch (error) {
-      console.error(error);
+      // Mostrar un mensaje de alerta al usuario
+      alert(
+        'Ocurrió un error al realizar la búsqueda. Por favor, inténtalo de nuevo.'
+      );
     }
   };
   return (
