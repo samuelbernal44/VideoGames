@@ -34,6 +34,17 @@ body {
   background-repeat: no-repeat;
 }
 
+body.landing-page {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-image: url('./img/fondo10.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
