@@ -28,9 +28,9 @@ function HomePage() {
 
   // Filtrar juegos por origen
   if (selectedOrigin === 'API') {
-    filteredGames = filteredGames.filter((game) => !game.created);
+    filteredGames = games.filter((game) => !game.created);
   } else if (selectedOrigin === 'Database') {
-    filteredGames = filteredGames.filter((game) => game.created);
+    filteredGames = games.filter((game) => game.created);
   }
 
   // Ordenar juegos
