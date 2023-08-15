@@ -143,10 +143,10 @@ const Form = () => {
           }
         />
         {errors.genres && <FormP>{errors.genres}</FormP>}
+        <ButtonContainer>
+          <FormButton type="submit">Submit</FormButton>
+        </ButtonContainer>
       </FormContainer>
-      <ButtonContainer>
-        <FormButton type="submit">Submit</FormButton>
-      </ButtonContainer>
     </>
   );
 };
