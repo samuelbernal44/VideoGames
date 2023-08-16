@@ -6,6 +6,7 @@ import FilterButton from '../../components/FilterButton/FilterButton';
 
 function HomePage() {
   const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(0);
   const [selectedGenre, setSelectedGenre] = useState('All');
   const [selectedOrigin, setSelectedOrigin] = useState('All');
   const [sortCriteria, setSortCriteria] = useState('name');
@@ -64,10 +65,12 @@ function HomePage() {
   const handleFilterChange = (genre) => {
     setSelectedGenre(genre);
     localStorage.setItem('selectedGenre', genre);
+    setCurrentPage(0);
   };
   const handleOriginChange = (origin) => {
     setSelectedOrigin(origin);
     localStorage.setItem('selectedOrigin', origin);
+    setCurrentPage(0);
   };
 
   const handleNameSortChange = (event) => {
@@ -96,7 +99,11 @@ function HomePage() {
         sortCriteria={sortCriteria}
         sortDirection={sortDirection}
       />
-      <GameList games={filteredGames} />
+      <GameList
+        games={filteredGames}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 }

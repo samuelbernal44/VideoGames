@@ -10,15 +10,13 @@ import {
 
 const ITEMS_PER_PAGE = 15;
 
-function GameList({ games }) {
-  const [currentPage, setCurrentPage] = useState(0);
-
+function GameList({ games, currentPage, setCurrentPage }) {
   useEffect(() => {
     const storedPage = localStorage.getItem('currentPage');
     if (storedPage) {
       setCurrentPage(Number(storedPage));
     }
-  }, []);
+  }, [setCurrentPage]);
 
   // Calcular el número total de páginas
   const totalPages = Math.ceil(games.length / ITEMS_PER_PAGE);
